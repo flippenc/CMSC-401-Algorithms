@@ -1,0 +1,52 @@
+MakeSet(Item a)
+{
+	Initialize the head and tail of this list
+	Tail = head //since the list is length 1
+	Store item a in the head
+	Make head.next point to null
+	Store this set in a hash table so it can be looked up by item key
+}
+
+Find(Item key)
+{
+	return a pointer to the value in the hash table with value key
+}
+
+Union(Set s1, Set s2)
+{
+	
+	Make s1.tail->next = s2.head
+	Make s1.tail = s2.tail
+	Delete s2	
+}
+
+MakeSet(Item key)
+{
+	Create a new node, n
+	n.parent = n
+	n.rank = 0
+	n.size = 	
+}
+
+Find (Item key)
+{
+	
+	while (key.parent != key)
+	{
+		key = key.parent
+	}
+	return key	
+}
+
+Union (Set s1, set s2)
+{
+	s1Root = Find(s1)
+	s2Root = Find(s2)
+
+	if s1Root = s2Root
+		return
+	if s1Root.rank < s2Root.rank
+		swap s1Root and s2Root
+	if s1Root.rank = s2Root.rank
+		s1Root.rank++
+}

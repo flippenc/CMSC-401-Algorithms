@@ -1,0 +1,78 @@
+CMSC 401 Assignment 3 KD Tree Pseudocode
+Start with X-axis when choosing the first division
+Divide the space until there is at most one point in each sub-panel
+Do not divide further if there is only one point left in a panel
+Assume there exists a function mid(Point s, boolean byX_axis) that returns the point that is the middle point by either the x or y axis
+Each KD tree node contains a field pointing to the dividing point, one left child, and one right child
+
+function KD(P, byAxis)
+	KDnode root
+	Point p = mid(P, boolean byX_axis)
+	
+	if (P.size() == 1)
+	{
+		root.point = p
+		return root
+	}
+	
+	if (P.size() == 2)
+	{
+		root.point = p
+		Point other
+		if (P.get(0) == p)
+		{
+			other = P.get(1)
+		}
+		else
+		{
+			other = P.get(0)
+		}
+		if (byX_axis)
+		{
+			if (other.x < p.x)
+			{
+				root.left = other
+			}
+			else
+			{
+				root.right = other
+			}
+		}
+		else
+		{
+			if (other.y < p.y)
+			{
+				root.left = other
+			}
+			else
+			{
+				root.right = other
+			}
+		}
+		return root
+	}
+	
+	root.point = p
+	
+	Pleft = P
+	for (Point p1: Pleft)
+	{
+		if (p1 <= p)
+		{
+			Pleft.remove(p1)
+		}
+	}
+	root.left = KD(Pleft, !byX_axis)
+	
+	Pright = P
+	for (Point p2: Pright)
+	{
+		if (p2 > p)
+		{
+			Pright.remove(p2);
+		}	
+	}
+	root.right = KD(Pright, !byX_axis)
+	
+	return root
+end function

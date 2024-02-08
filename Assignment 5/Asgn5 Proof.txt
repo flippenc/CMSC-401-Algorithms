@@ -1,0 +1,30 @@
+Proof that Dijkstra's Algorithm Provides and Optimal Solution for the Shortest Path Problem:
+Proof by induction:
+Let d(vi) represent the distance to vertex vi from a source vertex
+Base case: 
+	Our graph G has 1 vertex, Dijkstra's algo gives us d(v1) = 0 which is obviously true
+Inductive hypothesis:
+	G has n vertices
+	
+https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm#Proof_of_correctness
+https://web.engr.oregonstate.edu/~glencora/wiki/uploads/dijkstra-proof.pdf
+
+Proof by induction.
+Let d(v) be the shortest distance from the source to vertex v found by Djikstra's algorithm
+Let s(v) be the shortest distance from the source to vertex v found by the optimal solution
+If Djisktra's algorithm is optimal, then for all vi in G, d(vi) = s(vi).
+We will prove this by induction.
+Our base case is when G has only one vertex. In this case, d(v1) = 0 and s(v1) = 0 since if there is only one vertex, v1 = source and no travelling is done.
+
+For our inductive hypothesis, assume G has n vertices and for every vi in G, d(vi) = s(vi).
+
+Using our inductive hypothesis, we need to show that for vertex vn+1, d(vn+1) = s(vn+1).
+We know by the inductive hypothesis that d(vi) is the correct distance from the source to vi and therefore, d(vn+1) can be found by choosing some edge uv(n+1) such that if d(vn+1) = d(u) + length(uv(n+1)), then d(vn+1) is minimized.
+
+Suppose for contradiction that s(vn+1) < d(vn+1). 
+There are two possible cases. 
+First: There exists a shorter path to get to u which is impossible since all vertices besides v(n+1) already have their shortest paths found.
+
+Second: There is another edge wvn+1 such that d(w) + length(wvn+1) is smaller than d(u) + length(uvn+1), but if such an edge existed, it must have already been checked by Djisktra's algorithm and would have been chosen, so this case must also be impossible.
+
+Therefore, Djikstra's algorithm must find the optimal solution for vn+1 and by induction, it finds the optimal solution for every vertex.
